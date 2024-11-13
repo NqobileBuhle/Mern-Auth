@@ -1,4 +1,5 @@
-import asyncHandler from "express-async-handler"
+import asyncHandler from "express-async-handler";
+import User from "../models/userModel.js";
 
 
 //Comments on what this function does
@@ -7,5 +8,75 @@ import asyncHandler from "express-async-handler"
 //@access Public
 const authUser=  asyncHandler(async(req,res)=>{
     res.status(200).json({message:'Auth User'})
+    // res.status(401);
+    // throw new Error('Something went wrong')
 });
-export{authUser};
+
+
+//@desc  Register user
+//route   POST /api/users
+//@access Public
+const registerUser=  asyncHandler(async(req,res)=>{
+    const{name,email,password}=req.body;
+    console.log(name);
+
+    const userExists=await User.findOne({email});
+
+    if(userExists){
+        res.status(400);
+        throw new Error('User already exists');
+    }
+
+    //Creating a user
+    const user=await User.create({
+        name,
+        email,
+        password
+    });
+    if(user){
+        res.status(201).json({
+            _id:user._id,
+            name:user.name,
+            email:user.email
+        });
+    }else{
+        res.status(400);
+        throw new Error('Invalid user data')
+    }
+    res.status(200).json({message:'Register User'})
+    // res.status(401);
+    // throw new Error('Something went wrong')
+});
+
+
+//@desc  Logout user
+//route   POST /api/users/logout
+//@access Public
+const logoutUser=asyncHandler(async(req,res)=>{
+    res.status(200).json({message:'Logout user'});
+});
+
+
+//@desc  Get user profile user
+//route   GET /api/users/profile
+//@access Private
+const getUserProfile=asyncHandler(async(req,res)=>{
+    res.status(200).json({message:'  Get user profile'});
+});
+
+
+//@desc  Update user orofile
+//route   PUT /api/users
+//@access PRIVATE
+const updateUser=asyncHandler(async(req,res)=>{
+    res.status(200).json({message:'update user profile'});
+});
+
+
+export{
+    authUser,
+registerUser,
+logoutUser,
+getUserProfile,
+updateUser
+};

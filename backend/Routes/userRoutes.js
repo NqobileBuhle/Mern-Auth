@@ -1,19 +1,16 @@
 import express from 'express';
+import { authUser,
+    registerUser,
+    logoutUser,
+    getUserProfile,
+    updateUser} from '../controllers/userControllers.js';
 const router = express.Router();
 
-// Example POST route for auth
-router.post('/auth', (req, res) => {
-    // Add your authentication logic here
-    res.send(" message:Auth endpoint working");
-});
-router.get('/', (req, res) => {
-    // Add your authentication logic here
-    res.send(" message:Get endpoint working");
-});
-router.delete('/api/users', (req, res) => {
-    // Add your authentication logic here
-    res.send(" message:Auth endpoint working");
-});
+router.post('/',authUser);
+router.post('/auth',registerUser);
+router.post('/logout',logoutUser);
+router.route('/profile').get(getUserProfile).put(updateUser);
+
 
 
 export default router;
