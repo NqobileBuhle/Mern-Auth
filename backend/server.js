@@ -3,6 +3,9 @@ import dotenv from "dotenv";
 import userRoutes from './Routes/userRoutes.js'
 import { notFound, errorHandler} from "./middleware/errorMiddleware.js";
 import connectDB from "./config/db.js";
+import cookieParser from "cookie-parser";
+import bodyParser from 'body-parser';
+
 dotenv.config();
 // console.log(process.env.MONGO_URI);  // Ensure this outputs the correct MongoDB URI
 
@@ -15,7 +18,9 @@ const app=(express());
 
 app.use(express.json());
 app.use(express.urlencoded({extendend:true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 
+ app.use(cookieParser());
 app.use('/api/users',userRoutes)
 
 app.get('/', (req,res)=>res.send('Server is ready'));
