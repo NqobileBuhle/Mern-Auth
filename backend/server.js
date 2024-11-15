@@ -17,7 +17,8 @@ connectDB();
 const app=(express());
 
 app.use(express.json());
-app.use(express.urlencoded({extendend:true}));
+app.use(express.urlencoded({ extended: true }));
+
 app.use(bodyParser.urlencoded({ extended: true }));
 
  app.use(cookieParser());
