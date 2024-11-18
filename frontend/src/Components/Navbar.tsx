@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import {FaSignInAlt,FaSignOutAlt} from 'react-icons/fa';
 import axios from "axios";
 
 interface User {
@@ -127,11 +128,13 @@ const Navbar: React.FC = () => {
               {/* Links for non-logged in users */}
               <li>
                 <Link to="/login" className="hover:text-purple-400">
+                <FaSignInAlt />
                   SignIn
                 </Link>
               </li>
               <li>
                 <Link to="/register" className="hover:text-purple-400">
+                <FaSignOutAlt />
                   SignUp
                 </Link>
               </li>

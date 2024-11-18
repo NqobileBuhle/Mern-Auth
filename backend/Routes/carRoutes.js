@@ -15,17 +15,18 @@ router.get('/', async (req, res) => {
 
 // POST a new car
 router.post('/', async (req, res) => {
-  const { make, model, year, price } = req.body;
-
-  try {
-    const newCar = new Car({ make, model, year, price });
-    const savedCar = await newCar.save();
-    res.status(201).json(savedCar);
-  } catch (err) {
-    res.status(400).json({ error: 'Failed to add car' });
-  }
-});
-
+    try {
+      console.log('Request Body:', req.body); // Add this line
+      const { make, model, year, price, image } = req.body;
+  
+      const newCar = await Car.create({ make, model, year, price, image });
+      res.status(201).json(newCar);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Failed to create car' });
+    }
+  });
+  
 // PUT to update a car
 router.put('/:id', async (req, res) => {
   const { id } = req.params;
