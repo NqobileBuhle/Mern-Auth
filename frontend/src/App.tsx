@@ -5,17 +5,19 @@ import Login from './Components/Login';
 import Register from './Components/Register';
 import Profile from './Components/Profile';
 import Navbar from './Components/Navbar'; // Import your Navbar component
+import EditCar from './Components/EditCar';
 
 const App: React.FC = () => {
   return (
     <Router>
       <div>
-        <Navbar /> 
+        <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/cars/edit/:id" element={<EditCar />} />
         </Routes>
       </div>
     </Router>

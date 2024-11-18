@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import {FaSignInAlt,FaSignOutAlt} from 'react-icons/fa';
 import axios from "axios";
+import { IoPersonOutline } from "react-icons/io5";
 
 interface User {
   _id: string;
@@ -83,7 +84,8 @@ const Navbar: React.FC = () => {
           {user ? (
             <>
               {/* Profile and Dropdown Menu */}
-              <div className="relative">
+              <div className="flex items-center space-x-2 ">
+              <IoPersonOutline className="text-white" />
                 <button
                   onClick={toggleDropdown}
                   className="text-white hover:text-purple-400 focus:outline-none"

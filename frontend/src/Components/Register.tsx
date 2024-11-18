@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const Register: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -102,6 +103,9 @@ const Register: React.FC = () => {
             >
               Sign Up
             </button>
+            <div className='p-6'>
+              Already have an account?<Link to='/Login'>Login</Link>
+            </div>
           </div>
         </form>
       </div>

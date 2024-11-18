@@ -33,7 +33,7 @@ const authUser = asyncHandler(async (req, res) => {
 //@access Public
 const registerUser=  asyncHandler(async(req,res)=>{
     const{name,email,password}=req.body;
-    console.log(name);
+    // console.log(name);
 
     const userExists=await User.findOne({email});
 
@@ -90,7 +90,7 @@ const getUserProfile = asyncHandler(async (req, res) => {
         name: req.user.name,
         email: req.user.email,
     };
-    console.log(user);
+    //console.log(user);
     
     res.status(200).json(user); // Send the user object as the response
 });
