@@ -8,7 +8,7 @@ const CarSchema = mongoose.Schema({
   model: { type: String, required: true },
   year: { type: Number, required: true },
   price: { type: Number, required: true },
-  image:{type:String,required:true}
+  image:{type:String,required:false}
 }, { timestamps: true });
 
 export default _model('Car', CarSchema);

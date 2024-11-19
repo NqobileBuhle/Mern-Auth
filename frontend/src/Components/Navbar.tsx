@@ -3,6 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import {FaSignInAlt,FaSignOutAlt} from 'react-icons/fa';
 import axios from "axios";
 import { IoPersonOutline } from "react-icons/io5";
+import AddCar from "../Components/AddCar";
+import { IoIosAdd } from "react-icons/io";
 
 interface User {
   _id: string;
@@ -64,7 +66,7 @@ const Navbar: React.FC = () => {
   // };
 
   return (
-    <nav className="bg-purple-700 text-pink-500">
+    <nav className="bg-slate-700 text-blue-500">
       <div className="container mx-auto flex justify-between items-center p-4">
         {/* Logo */}
         <div className="text-xl font-bold">
@@ -76,8 +78,9 @@ const Navbar: React.FC = () => {
         {/* Menu Items */}
         <ul className="hidden md:flex space-x-6">
           <li>
-            <Link to="/" className="hover:text-purple-400">
-              Home
+            <Link to="/AddCar" className="hover:text-blue-400">
+            <IoIosAdd  className="text-blue-500 size-4"/>
+              Add
             </Link>
           </li>
 
@@ -88,7 +91,7 @@ const Navbar: React.FC = () => {
               <IoPersonOutline className="text-white" />
                 <button
                   onClick={toggleDropdown}
-                  className="text-white hover:text-purple-400 focus:outline-none"
+                  className="text-blue-500 hover:text-blue-400 focus:outline-none"
                 >
                   {user.name}
                 </button>
@@ -129,13 +132,13 @@ const Navbar: React.FC = () => {
             <>
               {/* Links for non-logged in users */}
               <li>
-                <Link to="/login" className="hover:text-purple-400">
+                <Link to="/login" className="hover:text-blue-400">
                 <FaSignInAlt />
                   SignIn
                 </Link>
               </li>
               <li>
-                <Link to="/register" className="hover:text-purple-400">
+                <Link to="/register" className="hover:text-blue-400">
                 <FaSignOutAlt />
                   SignUp
                 </Link>

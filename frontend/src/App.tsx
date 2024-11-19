@@ -6,6 +6,7 @@ import Register from './Components/Register';
 import Profile from './Components/Profile';
 import Navbar from './Components/Navbar'; // Import your Navbar component
 import EditCar from './Components/EditCar';
+import AddCar from './Components/AddCar';
 
 const App: React.FC = () => {
   return (
@@ -16,6 +17,7 @@ const App: React.FC = () => {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/addcar" element={<AddCar />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/cars/edit/:id" element={<EditCar />} />
         </Routes>

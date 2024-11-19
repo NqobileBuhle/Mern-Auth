@@ -87,7 +87,7 @@ const EditCar: React.FC = () => {
       />
       <button
         onClick={handleUpdate}
-        className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
+        className="w-full bg-slate-500 text-white p-2 rounded hover:bg-blue-900"
       >
         Update
       </button>

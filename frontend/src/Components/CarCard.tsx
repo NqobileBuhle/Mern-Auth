@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 
-// Define the Car interface
 interface Car {
   _id: string;
   make: string;
@@ -10,43 +9,39 @@ interface Car {
   image: string;
 }
 
-// Define the props for the CarCard component
 interface CarCardProps {
   car: Car;
   onDelete: (id: string) => void;
 }
 
 const CarCard: React.FC<CarCardProps> = ({ car, onDelete }) => {
-  if (!car) {
-    console.error('Car object is undefined:', car); // Debugging if car is undefined
-    return null; // Early return to avoid rendering if car is invalid
-  }
-
   return (
-    <div className="border p-4 rounded shadow">
+    <div className="bg-slate-300 border rounded-lg shadow-md hover:shadow-lg transition-shadow">
       <img
-        src={car.image || 'https://via.placeholder.com/150'} // Fallback image if no URL is provided
-        alt={`${car.make || 'Unknown'} ${car.model || 'Car'}`} // Fallback alt text
-        className="w-full h-40 object-cover mb-4 rounded"
+        src={car.image || 'https://via.placeholder.com/150'}
+        alt={`${car.make} ${car.model}`}
+        className="rounded-t-lg object-cover w-full h-48"
       />
-      <h2 className="text-lg font-bold">
-        {car.make || 'Unknown Make'} {car.model || 'Unknown Model'}
-      </h2>
-      <p>Year: {car.year || 'N/A'}</p>
-      <p>Price: ${car.price || 'N/A'}</p>
-      <div className="mt-4 flex justify-between">
-        <Link
-          to={`/cars/edit/${car._id}`}
-          className="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600"
-        >
-          Edit
-        </Link>
-        <button
-          onClick={() => onDelete(car._id)}
-          className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
-        >
-          Delete
-        </button>
+      <div className="p-4">
+        <h2 className="text-lg font-bold mb-2">
+          {car.make} {car.model}
+        </h2>
+        {/* <p className="text-sm text-gray-600">Year: {car.year}</p>
+        <p className="text-sm text-gray-600">Price: ${car.price}</p> */}
+        <div className="mt-4 flex justify-between items-center">
+          <Link
+            to={`/cars/edit/${car._id}`}
+            className="px-4 py-2 bg-blue-900 text-white rounded-md hover:bg-slate-600"
+          >
+            Edit
+          </Link>
+          <button
+            onClick={() => onDelete(car._id)}
+            className="px-4 py-2 bg-slate-500 text-white rounded-md hover:bg-slate-600"
+          >
+            Delete
+          </button>
+        </div>
       </div>
     </div>
   );
