@@ -7,6 +7,7 @@ const EditCar: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const [car, setCar] = useState<Partial<Car>>({});
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchCar = async () => {
@@ -15,13 +16,28 @@ const EditCar: React.FC = () => {
         setCar(response.data);
       } catch (error) {
         console.error('Error fetching car:', error);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchCar();
   }, [id]);
 
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setCar((prevCar) => ({
+      ...prevCar,
+      [name]: name === 'year' || name === 'price' ? parseFloat(value) : value,
+    }));
+  };
+
   const handleUpdate = async () => {
+    if (!car.make || !car.model || !car.year || !car.price) {
+      alert('Please fill in all fields before updating.');
+      return;
+    }
+
     try {
       await axios.put(`/api/cars/${id}`, car);
       navigate('/');
@@ -30,34 +46,51 @@ const EditCar: React.FC = () => {
     }
   };
 
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
   return (
-    <div>
-      <h2>Edit Car</h2>
+    <div className="max-w-md mx-auto mt-10 p-4 border rounded shadow">
+      <h2 className="text-lg font-bold mb-4">Edit Car</h2>
       <input
         type="text"
+        name="make"
         value={car.make || ''}
-        onChange={(e) => setCar({ ...car, make: e.target.value })}
+        onChange={handleInputChange}
         placeholder="Make"
+        className="w-full p-2 mb-2 border rounded"
       />
       <input
         type="text"
+        name="model"
         value={car.model || ''}
-        onChange={(e) => setCar({ ...car, model: e.target.value })}
+        onChange={handleInputChange}
         placeholder="Model"
+        className="w-full p-2 mb-2 border rounded"
       />
       <input
         type="number"
+        name="year"
         value={car.year || ''}
-        onChange={(e) => setCar({ ...car, year: parseInt(e.target.value) })}
+        onChange={handleInputChange}
         placeholder="Year"
+        className="w-full p-2 mb-2 border rounded"
       />
       <input
         type="number"
+        name="price"
         value={car.price || ''}
-        onChange={(e) => setCar({ ...car, price: parseFloat(e.target.value) })}
+        onChange={handleInputChange}
         placeholder="Price"
+        className="w-full p-2 mb-2 border rounded"
       />
-      <button onClick={handleUpdate}>Update</button>
+      <button
+        onClick={handleUpdate}
+        className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
+      >
+        Update
+      </button>
     </div>
   );
 };
