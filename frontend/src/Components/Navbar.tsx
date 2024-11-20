@@ -76,7 +76,7 @@ const Navbar: React.FC = () => {
         </div>
 
         {/* Menu Items */}
-        <ul className="hidden md:flex space-x-6">
+        <ul className="hidden md:flex space-x-36">
           <li>
             <Link to="/AddCar" className="hover:text-blue-400">
             <IoIosAdd  className="text-blue-500 size-4"/>
