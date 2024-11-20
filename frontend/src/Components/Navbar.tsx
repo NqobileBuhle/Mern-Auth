@@ -5,6 +5,7 @@ import axios from "axios";
 import { IoPersonOutline } from "react-icons/io5";
 import AddCar from "../Components/AddCar";
 import { IoIosAdd } from "react-icons/io";
+import {GiSteeringWheel} from "react-icons/gi";
 
 interface User {
   _id: string;
@@ -66,23 +67,33 @@ const Navbar: React.FC = () => {
   // };
 
   return (
-    <nav className="bg-slate-700 text-blue-500">
+    <nav className="bg-slate-700 text-blue-500 ">
       <div className="container mx-auto flex justify-between items-center p-4">
         {/* Logo */}
-        <div className="text-xl font-bold">
+        <div className="text-2xl font-bold">
           <Link to="/" className="hover:text-gray-200">
-            MERN Auth
+          <GiSteeringWheel size={35}className="text-blue-300"/>
+            WheelDeal
           </Link>
         </div>
 
+
         {/* Menu Items */}
-        <ul className="hidden md:flex space-x-36">
-          <li>
+        <ul className=" flex items-center gap-8 font-medium  text-xl hidden md:flex space-x-16">
+          <li >
+            <Link to="/"></Link>
+            Home
+          </li>
+          <li >
+            <Link to ="/about">About</Link>
+
+          </li>
+          {/* <li>
             <Link to="/AddCar" className="hover:text-blue-400">
             <IoIosAdd  className="text-blue-500 size-4"/>
               Add
             </Link>
-          </li>
+          </li> */}
 
           {user ? (
             <>
