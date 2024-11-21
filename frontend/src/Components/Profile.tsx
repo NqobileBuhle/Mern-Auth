@@ -1,7 +1,6 @@
 // src/components/Profile.tsx
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 
 const Profile: React.FC = () => {
   const [user, setUser] = useState<{ name: string; email: string } | null>(null);
@@ -11,7 +10,6 @@ const Profile: React.FC = () => {
     name: '',
     email: '',
   });
-  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchProfile = async () => {

@@ -79,7 +79,7 @@ const Navbar: React.FC = () => {
 
 
         {/* Menu Items */}
-        <ul className=" flex items-center gap-8 font-medium  text-xl hidden md:flex space-x-16">
+        <ul className=" flex items-center gap-8 font-medium  text-xl  md:flex space-x-16">
           <li >
             <Link to="/"></Link>
             Home

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { FaEdit, FaTrash, FaHeart } from 'react-icons/fa'; // Importing icons
+import { FaEdit, FaTrash,  } from 'react-icons/fa'; // Importing icons
 
 interface Car {
   _id: string;
@@ -31,7 +31,7 @@ const CarCard: React.FC<CarCardProps> = ({ car, onDelete, onFavorite }) => {
         onClick={() => onFavorite(car._id)}
         className="absolute top-2 right-2 cursor-pointer text-red-500 hover:text-red-600"
       >
-        <FaHeart size={24} />
+        {/* <FaHeart size={24} /> */}
       </div>
 
       {/* Content */}
